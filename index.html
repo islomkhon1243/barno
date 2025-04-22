@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Для Дианы 🌟</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Pacifico', cursive;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    }
+
+    .wrapper {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 0 0 10px #ff4081;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .message {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 500px;
+      margin: 20px auto;
+      font-size: 1.3em;
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    button {
+      background: #ff4081;
+      border: none;
+      padding: 15px 30px;
+      color: white;
+      font-size: 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin: 10px;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .music-btn {
+      font-size: 1.5em;
+      padding: 10px 20px;
+      background: white;
+      color: #ff4081;
+      border: 2px solid #ff4081;
+      animation: none;
+    }
+
+    .music-btn.playing {
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .lyrics {
+	  font-size: 1.2em;
+	  line-height: 1.6;
+	  color: white;
+	  text-align: center;
+	  margin-top: 30px;
+	  background: rgba(255, 255, 255, 0.1);
+	  padding: 20px;
+	  border-radius: 10px;
+	  backdrop-filter: blur(10px);
+	}
+
+	.lyrics div {
+	  margin-bottom: 12px;
+	}
+
+	.lyrics strong {
+	  font-size: 1.3em;
+	  color: #ff4081;
+	  font-weight: bold;
+	}
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="wrapper">
+    <h1>Привет, Диана! 🌈</h1>
+    <div class="message">
+      Ты не веришь в мой потенциал? 😏<br><br>
+      Позволь этому сайту убедить тебя в обратном!<br><br>
+      Здесь каждый пиксель создан, чтобы подарить тебе улыбку 💖
+    </div>
+    <button onclick="alert('✨ Ты особенная, Диана ✨')">Нажми сюда 😉</button>
+    <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
+
+    <div id="lyrics" class="lyrics">
+	  <div>🎵 Диана (лучшая подруга) 🎵</div>
+	  
+	  <div><strong>[Куплет 1]</strong></div>
+	  <div>Блонди в очках, и взгляд как экзамен,</div>
+	  <div>Знает предметы, но сердцем упрямая.</div>
+	  <div>Учителька будущая — страшно представить,</div>
+	  <div>Скажет "не так!" — и начнёт преподавать.</div>
+	  
+	  <div>Снова кафе, и опять недовольна,</div>
+	  <div>"Где мой латте, и зачем эта вольность?"</div>
+	  <div>Но я улыбаюсь — ведь знаю давно:</div>
+	  <div>Такой, как Диана, не сыщешь никто.</div>
+
+	  <div><strong>[Припев]</strong></div>
+	  <div>Диана, Диана — моя голова и беда,</div>
+	  <div>Ты можешь не верить, но ты навсегда.</div>
+	  <div>Подруга на века, хоть ворчишь иногда,</div>
+	  <div>Ты в сердце моём, как весна и гроза.</div>
+
+	  <div><strong>[Куплет 2]</strong></div>
+	  <div>Учебник в руках, но в душе — приключенье,</div>
+	  <div>Ты строгий судья, но в юморе — гений.</div>
+	  <div>Твоя недовольность — мой личный шторм,</div>
+	  <div>Но я в этом море построю свой дом.</div>
+
+	  <div>Говоришь: "Все мужики — это драма",</div>
+	  <div>Пьем чай — и смеёмся до самого утра.</div>
+	  <div>Ты светишься даже, когда на нуле,</div>
+	  <div>Ты мой космос в университетской толпе.</div>
+
+	  <div><strong>[Припев]</strong></div>
+	  <div>Диана, Диана — моя голова и беда,</div>
+	  <div>Ты можешь не верить, но ты навсегда.</div>
+	  <div>Подруга на века, хоть ворчишь иногда,</div>
+	  <div>Ты в сердце моём, как весна и гроза.</div>
+
+	  <div><strong>[Бридж]</strong></div>
+	  <div>Если ты плачешь — я рядом стою,</div>
+	  <div>Ты знаешь, я всё за тебя переживу.</div>
+	  <div>Хоть жизнь иногда превращает в урок,</div>
+	  <div>Ты мой лучший ответ, мой самый звонкий звонок.</div>
+
+	  <div><strong>[Финал]</strong></div>
+	  <div>Диана, Диана — ты лучшая, знай,</div>
+	  <div>Мир с тобой сложный, но только в кайф.</div>
+	  <div>Смеяться и спорить — так с тобой легко,</div>
+	  <div>Ты — друг, что со мной навсегда глубоко.</div>
+	</div>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicToggle");
+    const lyrics = document.getElementById("lyrics");
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicBtn.classList.add("playing");
+        lyrics.classList.add("show");
+      } else {
+        music.pause();
+        musicBtn.classList.remove("playing");
+        lyrics.classList.remove("show");
+      }
+    }
+
+    // Автостарт
+    window.addEventListener("load", () => {
+      music.play().then(() => {
+        musicBtn.classList.add("playing");
+        lyrics.classList.add("show");
+      }).catch(() => {
+        console.log("Автовоспроизведение запрещено браузером.");
+      });
+    });
+  </script>
+</body>
+</html>

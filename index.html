@@ -14,11 +14,14 @@
       font-family: 'Pacifico', cursive;
       overflow-x: hidden;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      position: relative;
     }
 
     .wrapper {
       text-align: center;
       padding: 50px 20px;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -80,29 +83,53 @@
     }
 
     .lyrics {
-	  font-size: 1.2em;
-	  line-height: 1.6;
-	  color: white;
-	  text-align: center;
-	  margin-top: 30px;
-	  background: rgba(255, 255, 255, 0.1);
-	  padding: 20px;
-	  border-radius: 10px;
-	  backdrop-filter: blur(10px);
-	}
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: white;
+      text-align: center;
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
 
-	.lyrics div {
-	  margin-bottom: 12px;
-	}
+    .lyrics div {
+      margin-bottom: 12px;
+    }
 
-	.lyrics strong {
-	  font-size: 1.3em;
-	  color: #ff4081;
-	  font-weight: bold;
-	}
+    .lyrics strong {
+      font-size: 1.3em;
+      color: #ff4081;
+      font-weight: bold;
+    }
 
     audio {
       display: none;
+    }
+
+    /* --- СЕРДЦА НА ФОНЕ --- */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+      top: -50px;
+      animation: fall linear infinite;
+      pointer-events: none;
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -120,33 +147,44 @@
     </div>
     <button onclick="alert('✨ Sen ajoyibsan, Barno! ✨')">Shu yerni bos 😉</button>
     <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
+  </div>
 
   <script>
     const music = document.getElementById("bgMusic");
     const musicBtn = document.getElementById("musicToggle");
-    const lyrics = document.getElementById("lyrics");
 
     function toggleMusic() {
       if (music.paused) {
         music.play();
         musicBtn.classList.add("playing");
-        lyrics.classList.add("show");
       } else {
         music.pause();
         musicBtn.classList.remove("playing");
-        lyrics.classList.remove("show");
       }
     }
 
-    // Автостарт
     window.addEventListener("load", () => {
       music.play().then(() => {
         musicBtn.classList.add("playing");
-        lyrics.classList.add("show");
       }).catch(() => {
         console.log("Автовоспроизведение запрещено браузером.");
       });
+
+      // --- Генерация падающих сердец ---
+      setInterval(createHeart, 500);
     });
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000); // Удаляем через 10 секунд
+    }
   </script>
 </body>
 </html>
